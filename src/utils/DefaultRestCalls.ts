@@ -2,9 +2,15 @@ import fetch, {AxiosPromise} from 'axios';
 
 import {HTTPMethod, RestCalls} from './restCalls';
 
+const proxy = proxy: {
+  host: '192.168.180.159',
+  port: 3223
+}
+
 class DefaultRestCalls implements RestCalls {
   async fetchData(url: string, method: HTTPMethod, headers?: any): Promise<string> {
     const ret = await fetch({
+      proxy,
       url,
       method,
       headers,
@@ -17,6 +23,7 @@ class DefaultRestCalls implements RestCalls {
 
   async fetchDataRaw(url: string, method: HTTPMethod, headers?: any): Promise<AxiosPromise> {
     const ret = await fetch({
+      proxy,
       url,
       method,
       headers,
@@ -29,6 +36,7 @@ class DefaultRestCalls implements RestCalls {
 
   async sendData(url: string, method: HTTPMethod, data: string, headers?: any): Promise<string> {
     const ret = await fetch({
+      proxy,
       url,
       method,
       data,
@@ -42,6 +50,7 @@ class DefaultRestCalls implements RestCalls {
 
   async sendDataRaw(url: string, method: HTTPMethod, data: string, headers?: any): Promise<AxiosPromise> {
     const ret = await fetch({
+      proxy,
       url,
       method,
       data,
